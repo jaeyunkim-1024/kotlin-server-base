@@ -1,4 +1,4 @@
-package api.server.base.client
+package api.server.base.client.user.entity
 
 import jakarta.persistence.*
 import org.hibernate.annotations.ColumnDefault

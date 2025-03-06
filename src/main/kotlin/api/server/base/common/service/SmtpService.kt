@@ -1,4 +1,4 @@
-package api.server.base.common
+package api.server.base.common.service
 
 import api.server.base.config.smtp.SmtpProperties
 import org.springframework.mail.javamail.JavaMailSender

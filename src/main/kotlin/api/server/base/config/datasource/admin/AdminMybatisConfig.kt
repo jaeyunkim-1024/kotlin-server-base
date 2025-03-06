@@ -1,6 +1,6 @@
 package api.server.base.config.datasource.admin//package api.server.base.config.datasource.admin
 
-import api.server.base.admin.LoginHistory
+import api.server.base.admin.user.entity.LoginHistory
 import org.apache.ibatis.session.SqlSessionFactory
 import org.apache.ibatis.type.TypeAliasRegistry
 import org.mybatis.spring.SqlSessionFactoryBean

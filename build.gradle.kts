@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.config.JvmTarget
-
 plugins {
 	kotlin("jvm") version "1.9.25"
 	kotlin("plugin.spring") version "1.9.25"
@@ -23,6 +21,7 @@ repositories {
 }
 
 extra["snippetsDir"] = file("build/generated-snippets")
+
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
@@ -51,6 +50,13 @@ dependencies {
 
 
 	implementation("io.github.cdimascio:dotenv-java:3.1.0")
+	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:1.6.3")
+
+	/// JWT 적용
+	val JJWT_VERSION="0.12.6"
+	implementation("io.jsonwebtoken:jjwt-api:${JJWT_VERSION}")
+	implementation("io.jsonwebtoken:jjwt-jackson:${JJWT_VERSION}")
+	implementation("io.jsonwebtoken:jjwt-impl:${JJWT_VERSION}")
 }
 
 kotlin {

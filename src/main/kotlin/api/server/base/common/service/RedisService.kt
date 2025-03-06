@@ -1,4 +1,4 @@
-package api.server.base.common
+package api.server.base.common.service
 
 import org.springframework.data.redis.core.RedisTemplate
 import org.springframework.stereotype.Service

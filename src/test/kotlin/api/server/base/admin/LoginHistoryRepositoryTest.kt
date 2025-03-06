@@ -1,14 +1,12 @@
 package api.server.base.admin
 
 import api.server.base.BaseApplication
-import api.server.base.BaseApplicationTests
 import api.server.base.admin.mappers.LoginHistoryMapper
+import api.server.base.admin.user.repo.LoginHistoryRepository
 import api.server.base.config.dotenv.DotEnv
 import jakarta.transaction.Transactional
 import org.junit.jupiter.api.BeforeAll
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import org.springframework.boot.test.context.SpringBootTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
