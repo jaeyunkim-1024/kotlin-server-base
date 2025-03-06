@@ -1,6 +1,6 @@
 package api.server.base.config.datasource.client
 
-import api.server.base.common.ProfileFlavor
+import api.server.base.common.enums.ProfileFlavor
 import api.server.base.config.datasource.strategy.UpperCasePhysicalNamingStrategy
 import jakarta.persistence.EntityManagerFactory
 import org.hibernate.cfg.AvailableSettings

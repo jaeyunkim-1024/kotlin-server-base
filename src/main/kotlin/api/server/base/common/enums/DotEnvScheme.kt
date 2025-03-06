@@ -1,4 +1,4 @@
-package api.server.base.config.dotenv
+package api.server.base.common.enums
 
 enum class DotEnvScheme {
     DB_URL,

@@ -1,6 +1,7 @@
 package api.server.base.config.dotenv
 
-import api.server.base.common.ProfileFlavor
+import api.server.base.common.enums.DotEnvScheme
+import api.server.base.common.enums.ProfileFlavor
 import io.github.cdimascio.dotenv.Dotenv
 
 

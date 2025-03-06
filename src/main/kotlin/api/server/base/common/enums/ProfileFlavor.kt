@@ -1,4 +1,4 @@
-package api.server.base.common
+package api.server.base.common.enums
 
 enum class ProfileFlavor(val env: String) {
     LOCAL("local"),

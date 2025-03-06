@@ -1,6 +1,6 @@
 package api.server.base.config.datasource.admin//package api.server.base.config.datasource.admin
 
-import api.server.base.config.dotenv.DotEnvScheme
+import api.server.base.common.enums.DotEnvScheme
 import com.zaxxer.hikari.HikariDataSource
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.context.annotation.Bean
