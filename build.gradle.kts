@@ -50,7 +50,6 @@ dependencies {
 
 
 	implementation("io.github.cdimascio:dotenv-java:3.1.0")
-	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:1.6.3")
 
 	/// JWT 적용
 	val JJWT_VERSION="0.12.6"

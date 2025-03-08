@@ -1,6 +1,6 @@
 spring:
   application:
-    name: base
+    name: kotlin-server-base
 
 kafka:
   topic:

@@ -21,10 +21,6 @@ class SmtpProperties {
         return DotEnvScheme.SMTP_PASSWORD.toString()
     }
 
-    fun getSocketFactoryClass(): String {
-        return DotEnvScheme.SMTP_SOCKET_FACTORY_CLASS.toString()
-    }
-
     fun getFromMail(): String {
         return DotEnvScheme.SMTP_FROM_MAIL.toString()
     }

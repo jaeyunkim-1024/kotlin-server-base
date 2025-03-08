@@ -25,7 +25,7 @@ class MailConfig(
         pt["mail.smtp.starttls.enable"] = true
         pt["mail.smtp.starttls.required"] = true
         pt["mail.smtp.socketFactory.fallback"] = false
-        pt["mail.smtp.socketFactory.class"] = mailProperties.getSocketFactoryClass()
+        pt["mail.smtp.socketFactory.class"] = "javax.net.ssl.SSLSocketFactory"
 
         javaMailSender.javaMailProperties = pt
         javaMailSender.defaultEncoding = "UTF-8"
