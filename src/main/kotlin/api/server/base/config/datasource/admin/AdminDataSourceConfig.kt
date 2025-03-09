@@ -4,22 +4,10 @@ import api.server.base.common.enums.DotEnvScheme
 import com.zaxxer.hikari.HikariDataSource
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.context.annotation.Bean
-import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
-import org.springframework.context.annotation.FilterType
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 import javax.sql.DataSource
 
 @Configuration
-@EnableJpaRepositories(
-    basePackages = ["api.server.base.admin"],
-    entityManagerFactoryRef = "adminEntityManagerFactory",
-    transactionManagerRef = "adminTransactionManager",
-    includeFilters = [ComponentScan.Filter(
-        type = FilterType.REGEX,
-        pattern = ["api\\.server\\.base\\.(?!client)"] // 제외할 패키지 설정
-    )]
-)
 class AdminDataSourceConfig{
     @Bean(name = ["adminDataSource"])
     @ConfigurationProperties(prefix = "spring.datasource.hikari.admin")

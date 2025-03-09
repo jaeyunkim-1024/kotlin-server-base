@@ -1,6 +1,10 @@
 spring:
   application:
     name: kotlin-server-base
+  jpa:
+    open-in-view: false
+    generate-ddl: false
+    show-sql: false
 
 kafka:
   topic:

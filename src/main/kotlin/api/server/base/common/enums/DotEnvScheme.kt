@@ -10,7 +10,6 @@ enum class DotEnvScheme {
     REDIS_PASSWORD,
 
     JWT_SECRETKEY,
-    JWT_EXPIRATION,
     JWT_SALT,
     JWT_NUM,
 

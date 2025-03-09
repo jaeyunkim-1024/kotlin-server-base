@@ -17,9 +17,8 @@ import javax.sql.DataSource
 
 @ComponentScan(basePackages = ["api.server.base.client"])
 @MapperScan(
-    basePackages = ["api.server.base.client"],
-    sqlSessionFactoryRef = "clientSqlSessionFactory",
-    sqlSessionTemplateRef = "clientSqlSession"
+    basePackages = ["api.server.base.client.mappers"],
+    sqlSessionFactoryRef = "clientSqlSessionFactory"
 )
 @Configuration
 class ClientMybatisConfig {

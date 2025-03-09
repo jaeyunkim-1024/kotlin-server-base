@@ -3,20 +3,12 @@ package api.server.base.config.datasource.client
 import api.server.base.common.enums.DotEnvScheme
 import com.zaxxer.hikari.HikariDataSource
 import org.springframework.boot.context.properties.ConfigurationProperties
-import org.springframework.context.annotation.*
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories
+import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Configuration
+import org.springframework.context.annotation.Primary
 import javax.sql.DataSource
 
 @Configuration
-@EnableJpaRepositories(
-    basePackages = ["api.server.base.client"],
-    entityManagerFactoryRef = "clientEntityManagerFactory",
-    transactionManagerRef = "clientTransactionManager",
-    includeFilters = [ComponentScan.Filter(
-        type = FilterType.REGEX,
-        pattern = ["api\\.server\\.base\\.(?!admin)"] // 제외할 패키지 설정
-    )]
-)
 class ClientDataSourceConfig{
     @Primary
     @ConfigurationProperties(prefix = "spring.datasource.hikari.client")

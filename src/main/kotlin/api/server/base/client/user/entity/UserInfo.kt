@@ -6,36 +6,36 @@ import java.time.LocalDateTime
 
 @Entity
 @Table(name = "USER_INFO")
-open class UserInfo {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "USER_SEQ", nullable = false)
-    open var id: Int? = null
-
+class UserInfo(
     @Column(name = "EMAIL", nullable = false, length = 200)
-    open var email: String? = null
+    var email: String? = null,
 
     @Column(name = "PASSWORD", nullable = false, length = 1000)
-    open var password: String? = null
+    var password: String? = null,
 
     @Column(name = "USER_NAME", length = 200)
-    open var userName: String? = null
+    var userName: String? = null,
 
     @ColumnDefault("CURRENT_TIMESTAMP")
     @Column(name = "CREATED_AT")
-    open var createdAt: LocalDateTime? = null
+    var createdAt: LocalDateTime? = null,
 
     @Column(name = "UPDATED_AT")
-    open var updatedAt: LocalDateTime? = null
+    var updatedAt: LocalDateTime? = null,
 
     @Column(name = "EXPIRE_AT")
-    open var expireAt: LocalDateTime? = null
+    var expireAt: LocalDateTime? = null,
 
     @ColumnDefault("0")
     @Column(name = "IS_LOCK", nullable = false)
-    open var isLock: Int? = null
+    var isLock: Boolean? = false,
 
     @ColumnDefault("'NO_CERT'")
     @Column(name = "USER_ROLE", length = 45)
-    open var userRole: String? = null
+    var userRole: String? = null
+) {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "USER_SEQ", nullable = false)
+    var userSeq: Long? = null
 }

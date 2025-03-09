@@ -16,9 +16,8 @@ import javax.sql.DataSource
 
 @ComponentScan(basePackages = ["api.server.base.admin"])
 @MapperScan(
-    basePackages = ["api.server.base.admin"],
-    sqlSessionFactoryRef = "adminSqlSessionFactory",
-    sqlSessionTemplateRef = "adminSqlSession"
+    basePackages = ["api.server.base.admin.mappers"],
+    sqlSessionFactoryRef = "adminSqlSessionFactory"
 )
 @Configuration
 class AdminMybatisConfig {
