@@ -1,5 +1,6 @@
-package api.server.base.client.auth.security
+package api.server.base.client.auth.security.service
 
+import api.server.base.client.auth.security.model.CustomUserDetails
 import api.server.base.client.auth.user.repo.UserInfoRepository
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
@@ -12,7 +13,9 @@ class CustomUserDetailService(
     private val userInfoRepository: UserInfoRepository
 ) : UserDetailsService {
     override fun loadUserByUsername(username: String?): UserDetails {
-        return Optional.ofNullable(CustomUserDetails(userInfoRepository.findUserInfoByEmail(username!!)))
-            .orElseThrow { UsernameNotFoundException("사용자를 찾을 수 없습니다.") }
+        return CustomUserDetails(
+            Optional.ofNullable(userInfoRepository.findUserInfoByEmail(username!!))
+                .orElseThrow { UsernameNotFoundException("사용자를 찾을 수 없습니다.") }
+        )
     }
 }

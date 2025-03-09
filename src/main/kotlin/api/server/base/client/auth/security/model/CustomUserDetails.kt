@@ -1,6 +1,7 @@
-package api.server.base.client.auth.security
+package api.server.base.client.auth.security.model
 
 import api.server.base.client.auth.user.entity.UserInfo
+import api.server.base.client.auth.user.enums.UserRoles
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
@@ -34,7 +35,7 @@ class CustomUserDetails(
     }
 
     override fun getUsername(): String {
-        TODO("Not yet implemented")
+        return this.email ?: ""
     }
 
     override fun isAccountNonExpired(): Boolean {
@@ -51,5 +52,13 @@ class CustomUserDetails(
 
     override fun isEnabled(): Boolean {
         return super.isEnabled()
+    }
+
+    fun isEmailCert(): Boolean {
+        return role != UserRoles.NO_CERT.code
+    }
+
+    fun isAccountLocked(): Boolean {
+        return isLock!!
     }
 }
