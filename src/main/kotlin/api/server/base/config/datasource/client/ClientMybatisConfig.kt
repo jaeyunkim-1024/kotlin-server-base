@@ -1,6 +1,6 @@
 package api.server.base.config.datasource.client
 
-import api.server.base.client.user.entity.UserInfo
+import api.server.base.client.auth.user.entity.UserInfo
 import org.apache.ibatis.session.SqlSessionFactory
 import org.apache.ibatis.type.TypeAliasRegistry
 import org.mybatis.spring.SqlSessionFactoryBean

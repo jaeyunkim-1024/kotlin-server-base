@@ -1,6 +1,6 @@
-package api.server.base.client.user.repo
+package api.server.base.client.auth.user.repo
 
-import api.server.base.client.user.entity.UserInfo
+import api.server.base.client.auth.user.entity.UserInfo
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 

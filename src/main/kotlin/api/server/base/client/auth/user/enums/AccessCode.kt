@@ -1,4 +1,4 @@
-package api.server.base.client.user.enums
+package api.server.base.client.auth.user.enums
 
 enum class AccessCode(val code:String, val desc:String) {
     LOGIN_SUCCESS("10","로그인 성공"),

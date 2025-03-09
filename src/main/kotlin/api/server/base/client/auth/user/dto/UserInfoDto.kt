@@ -1,6 +1,6 @@
-package api.server.base.client.user.dto
+package api.server.base.client.auth.user.dto
 
-import api.server.base.client.user.entity.UserInfo
+import api.server.base.client.auth.user.entity.UserInfo
 import java.time.LocalDateTime
 
 data class UserInfoDto(

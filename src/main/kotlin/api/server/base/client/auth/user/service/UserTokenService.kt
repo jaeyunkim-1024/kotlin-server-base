@@ -1,4 +1,4 @@
-package api.server.base.client.user.service
+package api.server.base.client.auth.user.service
 
 import api.server.base.common.enums.RedisKeyGen
 import api.server.base.common.service.RedisService

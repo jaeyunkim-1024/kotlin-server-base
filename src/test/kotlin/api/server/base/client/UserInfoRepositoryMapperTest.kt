@@ -1,8 +1,8 @@
 package api.server.base.client
 
 import api.server.base.BaseApplication
+import api.server.base.client.auth.user.repo.UserInfoRepository
 import api.server.base.client.mappers.UserInfoMapper
-import api.server.base.client.user.repo.UserInfoRepository
 import api.server.base.config.dotenv.DotEnv
 import org.junit.jupiter.api.BeforeAll
 import org.springframework.beans.factory.annotation.Autowired
