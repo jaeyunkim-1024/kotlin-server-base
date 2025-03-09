@@ -23,6 +23,7 @@ class LoginFilter(
     }
 
     override fun attemptAuthentication(request: HttpServletRequest?, response: HttpServletResponse?): Authentication {
+        logger.info("[kbug] attemptAuthentication")
         val objectMapper = ObjectMapper()
         val dto: AuthRequestDto.LoginRequestDto = objectMapper.readValue(request!!.inputStream, AuthRequestDto.LoginRequestDto::class.java)
         val email: String = Optional.ofNullable(dto.email).orElse( "" )

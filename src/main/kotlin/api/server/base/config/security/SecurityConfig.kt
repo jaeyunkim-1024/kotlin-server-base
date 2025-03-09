@@ -5,6 +5,7 @@ import api.server.base.client.auth.security.filter.JwtFilter
 import api.server.base.client.auth.security.filter.LoginFilter
 import api.server.base.client.auth.security.handler.LoginFailureHandler
 import api.server.base.client.auth.security.handler.LoginSuccessHandler
+import api.server.base.client.auth.security.provider.CustomAuthenticationProvider
 import api.server.base.client.auth.security.provider.JwtTokenProvider
 import api.server.base.client.auth.security.service.CustomUserDetailService
 import api.server.base.client.auth.user.enums.UserRoles
@@ -13,7 +14,6 @@ import api.server.base.common.enums.SecurityPaths.adminPath
 import api.server.base.common.enums.SecurityPaths.allowNoCertUserPaths
 import api.server.base.common.enums.SecurityPaths.allowOrigin
 import api.server.base.common.enums.SecurityPaths.allowPermitAllPaths
-import api.server.base.common.enums.SecurityPaths.clientPath
 import org.slf4j.LoggerFactory
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -47,7 +47,6 @@ class SecurityConfig(
                 securityMatcher(it)
             }
             securityMatcher(adminPath)
-            securityMatcher(clientPath)
 
             authorizeHttpRequests {
                 authorize(HttpMethod.OPTIONS, "/**", permitAll)
@@ -57,12 +56,10 @@ class SecurityConfig(
                 }
 
                 allowNoCertUserPaths.forEach {
-                    authorize(it, hasAnyRole(UserRoles.ADMIN.role(), UserRoles.USER.role(), UserRoles.NO_CERT.role()))
+                    authorize(it, hasAnyRole(UserRoles.ROLE_ADMIN.role, UserRoles.ROLE_USER.role, UserRoles.ROLE_NO_CERT.role))
                 }
 
-                authorize(adminPath, hasRole(UserRoles.ADMIN.role()))
-
-                authorize(clientPath, hasAnyRole(UserRoles.ADMIN.role(), UserRoles.USER.role()))
+                authorize(adminPath, hasRole(UserRoles.ROLE_ADMIN.role))
 
                 authorize(anyRequest, denyAll)
             }
@@ -76,11 +73,17 @@ class SecurityConfig(
     }
 
     @Bean
+    fun daoAuthenticationProvider(): DaoAuthenticationProvider {
+        val customAuthenticationProvider = CustomAuthenticationProvider()
+        customAuthenticationProvider.setUserDetailsService(customUserDetailService)
+        customAuthenticationProvider.setPasswordEncoder(passwordEncoder())
+        return customAuthenticationProvider
+    }
+
+    @Bean
     @Throws(java.lang.Exception::class)
     fun authenticationManager(): AuthenticationManager {
-        val provider: DaoAuthenticationProvider = DaoAuthenticationProvider()
-        provider.setUserDetailsService(customUserDetailService)
-        provider.setPasswordEncoder(passwordEncoder())
+        val provider = daoAuthenticationProvider()
         return ProviderManager(provider)
     }
 

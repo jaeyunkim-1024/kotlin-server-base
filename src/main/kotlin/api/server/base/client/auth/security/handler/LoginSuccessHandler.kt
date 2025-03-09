@@ -8,6 +8,7 @@ import api.server.base.client.auth.security.provider.JwtTokenProvider
 import api.server.base.client.auth.user.entity.UserInfo
 import api.server.base.client.auth.user.enums.AccessCode
 import api.server.base.client.auth.user.repo.UserInfoRepository
+import api.server.base.common.model.CustomResponseDto
 import com.fasterxml.jackson.databind.ObjectMapper
 import jakarta.servlet.ServletException
 import jakarta.servlet.http.HttpServletRequest
@@ -31,12 +32,15 @@ class LoginSuccessHandler(
     ) {
         val mapper = ObjectMapper()
         val token: JwtTokenModel = jwtTokenProvider.issuedToken(authentication)
+        val result = CustomResponseDto(
+            data = token
+        )
         insertHistory(authentication)
         // JSON 응답 출력
         response.addHeader("Content-Type", "application/json; charset=UTF-8")
         response.contentType = MediaType.APPLICATION_JSON_VALUE
         response.status = HttpStatus.OK.value()
-        response.writer.write(mapper.writeValueAsString(token))
+        response.writer.write(mapper.writeValueAsString(result))
         response.writer.flush()
     }
 

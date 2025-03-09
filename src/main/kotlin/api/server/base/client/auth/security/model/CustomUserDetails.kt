@@ -14,7 +14,7 @@ class CustomUserDetails(
     private var password: String? = null,
     private var role: String? = null,
     private var createdAt: LocalDateTime? = null,
-    private val isLock: Boolean? = null,
+    private var isLock: Boolean? = null,
 
 ) : UserDetails {
     constructor(userInfo: UserInfo) : this(){
@@ -24,6 +24,7 @@ class CustomUserDetails(
         this.password = userInfo.password!!
         this.role = userInfo.userRole!!
         this.createdAt = userInfo.createdAt
+        this.isLock = userInfo.isLock
     }
 
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
@@ -55,7 +56,7 @@ class CustomUserDetails(
     }
 
     fun isEmailCert(): Boolean {
-        return role != UserRoles.NO_CERT.code
+        return role != UserRoles.ROLE_NO_CERT.role
     }
 
     fun isAccountLocked(): Boolean {

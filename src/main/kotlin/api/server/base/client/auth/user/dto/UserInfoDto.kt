@@ -4,9 +4,9 @@ import api.server.base.client.auth.user.entity.UserInfo
 import java.time.LocalDateTime
 
 data class UserInfoDto(
-    private var email: String? = null,
-    private var userName: String? = null,
-    private var createdAt: LocalDateTime? = null
+    var email: String? = null,
+    var userName: String? = null,
+    var createdAt: LocalDateTime? = null
 ) {
     constructor(entity: UserInfo): this() {
         email = entity.email

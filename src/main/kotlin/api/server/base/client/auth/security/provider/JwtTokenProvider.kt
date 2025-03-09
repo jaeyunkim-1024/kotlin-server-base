@@ -133,7 +133,7 @@ class JwtTokenProvider(
         val claims = getClaimsFromToken(token)
         val isEmailCert = claims.get("isEmailCert", String::class.java)
         val authorities = claims.get("authorities", String::class.java)
-        return isEmailCert == "Y" && authorities != UserRoles.NO_CERT.role()
+        return isEmailCert == "Y" && authorities != UserRoles.ROLE_NO_CERT.role
     }
 
     /** Principal(=email=subject) 가져오기 */

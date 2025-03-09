@@ -1,8 +1,13 @@
 package api.server.base.client.auth.security.model
 
+import java.io.Serializable
+
 data class JwtTokenModel(
-    private val token:String,
-    private val exp:Long,
-    private val iat:Long
-) {
+    val token:String? = null,
+    val exp:Long? = null,
+    val iat:Long? = null
+)  : Serializable {
+    companion object {
+        private const val serialVersionUID = 1L
+    }
 }

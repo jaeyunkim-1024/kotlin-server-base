@@ -8,7 +8,6 @@ object SecurityPaths {
     )
 
     final val adminPath:String = "/api/admin/**"
-    final val clientPath:String = "/api/**"
 
     final val allowPermitAllPaths = listOf(
         "/api/auth/sign-in",
