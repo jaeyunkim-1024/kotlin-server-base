@@ -8,15 +8,15 @@ import org.springframework.security.core.userdetails.UserDetails
 import java.time.LocalDateTime
 
 class CustomUserDetails(
-    private var userSeq: Long? = null,
-    private var email: String? = null,
+    var userSeq: Long? = null,
+    var email: String? = null,
     private var userName: String? = null,
     private var password: String? = null,
     private var role: String? = null,
     private var createdAt: LocalDateTime? = null,
     private var isLock: Boolean? = null,
 
-) : UserDetails {
+    ) : UserDetails {
     constructor(userInfo: UserInfo) : this(){
         this.userSeq = userInfo.userSeq!!
         this.email = userInfo.email!!

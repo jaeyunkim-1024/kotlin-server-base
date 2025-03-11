@@ -5,10 +5,8 @@ import api.server.base.admin.user.repo.LoginHistoryRepository
 import api.server.base.client.auth.security.model.CustomUserDetails
 import api.server.base.client.auth.security.model.JwtTokenModel
 import api.server.base.client.auth.security.provider.JwtTokenProvider
-import api.server.base.client.auth.user.entity.UserInfo
 import api.server.base.client.auth.user.enums.AccessCode
-import api.server.base.client.auth.user.repo.UserInfoRepository
-import api.server.base.common.model.CustomResponseDto
+import api.server.base.common.model.CommonResponseDto
 import com.fasterxml.jackson.databind.ObjectMapper
 import jakarta.servlet.ServletException
 import jakarta.servlet.http.HttpServletRequest
@@ -21,7 +19,6 @@ import java.io.IOException
 
 class LoginSuccessHandler(
     private val loginHistoryRepository: LoginHistoryRepository,
-    private val userInfoRepository: UserInfoRepository,
     private val jwtTokenProvider: JwtTokenProvider,
 ) : SimpleUrlAuthenticationSuccessHandler(){
     @Throws(IOException::class, ServletException::class)
@@ -32,7 +29,7 @@ class LoginSuccessHandler(
     ) {
         val mapper = ObjectMapper()
         val token: JwtTokenModel = jwtTokenProvider.issuedToken(authentication)
-        val result = CustomResponseDto(
+        val result = CommonResponseDto(
             data = token
         )
         insertHistory(authentication)
@@ -45,14 +42,11 @@ class LoginSuccessHandler(
     }
 
     private fun insertHistory(authentication: Authentication) {
-        val d: CustomUserDetails = authentication.principal as CustomUserDetails
-        val userInfo: UserInfo? = userInfoRepository.findUserInfoByEmail(d.username)
-        if(userInfo != null){
-            val loginHistory = LoginHistory(
-                accessCd = AccessCode.LOGIN_SUCCESS.code,
-                userSeq = userInfo.userSeq
-            )
-            loginHistoryRepository.save(loginHistory)
-        }
+        val principal: CustomUserDetails = authentication.principal as CustomUserDetails
+        val loginHistory = LoginHistory(
+            accessCd = AccessCode.LOGIN_SUCCESS.code,
+            userSeq = principal.userSeq
+        )
+        loginHistoryRepository.save(loginHistory)
     }
 }

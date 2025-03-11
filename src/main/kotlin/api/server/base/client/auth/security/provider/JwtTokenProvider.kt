@@ -6,8 +6,8 @@ import api.server.base.client.auth.user.enums.UserRoles
 import api.server.base.client.auth.user.service.UserTokenService
 import api.server.base.common.enums.DotEnvScheme
 import api.server.base.common.enums.RedisKeyGen
-import api.server.base.common.model.CustomException
-import api.server.base.common.model.CustomResultCode
+import api.server.base.common.model.CommonException
+import api.server.base.common.model.CommonResultCode
 import api.server.base.common.utils.CustomTimeUtils
 import com.fasterxml.jackson.core.JsonProcessingException
 import io.jsonwebtoken.*
@@ -91,7 +91,7 @@ class JwtTokenProvider(
     fun resolveToken(request: HttpServletRequest): String {
         val bearerToken = request.getHeader("Authorization")
         if(!StringUtils.hasText(bearerToken) || !bearerToken.startsWith("Bearer ")){
-            throw CustomException(CustomResultCode.AUTH_001)
+            throw CommonException(CommonResultCode.AUTH_001)
         }
         val saltingToken = bearerToken.substring(7)
         return desalting(saltingToken)

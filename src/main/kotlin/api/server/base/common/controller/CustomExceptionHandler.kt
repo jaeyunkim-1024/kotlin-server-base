@@ -1,9 +1,8 @@
 package api.server.base.common.controller
 
-import api.server.base.common.model.CustomException
-import api.server.base.common.model.CustomResponseDto
+import api.server.base.common.model.CommonException
+import api.server.base.common.model.CommonResponseDto
 import org.slf4j.LoggerFactory
-import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
@@ -12,11 +11,11 @@ import org.springframework.web.bind.annotation.RestControllerAdvice
 class CustomExceptionHandler {
     private val logger = LoggerFactory.getLogger(javaClass)
 
-    @ExceptionHandler(CustomException::class)
-    fun handleCustomException(e: CustomException): ResponseEntity<CustomResponseDto<String>> {
+    @ExceptionHandler(CommonException::class)
+    fun handleCustomException(e: CommonException): ResponseEntity<CommonResponseDto<String>> {
         logger.error("[kbug] handleCustomException")
         return ResponseEntity.ok(
-            CustomResponseDto(
+            CommonResponseDto(
                 resultCode = e.resultCode.name,
                 message = e.resultCode.message,
             )

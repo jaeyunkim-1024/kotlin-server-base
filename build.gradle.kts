@@ -48,8 +48,11 @@ dependencies {
 //	testImplementation("org.springframework.batch:spring-batch-test")
 
 //	implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
-	implementation("org.springframework.boot:spring-boot-starter-security")
-	testImplementation("org.springframework.security:spring-security-test")
+	// https://mvnrepository.com/artifact/org.springframework.security/spring-security-core
+	implementation("org.springframework.security:spring-security-core:6.4.3")
+	implementation("org.springframework.security:spring-security-web:6.4.3")
+	implementation("org.springframework.security:spring-security-config:6.4.3")
+	testImplementation("org.springframework.security:spring-security-test:6.4.3")
 
 
 	implementation("io.github.cdimascio:dotenv-java:3.1.0")

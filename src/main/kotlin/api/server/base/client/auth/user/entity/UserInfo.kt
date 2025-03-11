@@ -1,7 +1,5 @@
 package api.server.base.client.auth.user.entity
 
-import api.server.base.client.auth.security.model.AuthRequestDto
-import api.server.base.client.auth.user.enums.UserRoles
 import jakarta.persistence.*
 import org.hibernate.annotations.ColumnDefault
 import java.time.LocalDateTime
@@ -38,15 +36,6 @@ class UserInfo(
     var userRole: String? = null
 
 ) {
-    constructor(dto:AuthRequestDto.SignUpRequestDto) : this() {
-        email = dto.email
-        password = dto.password
-        userName = dto.userName
-        createdAt = LocalDateTime.now()
-        isLock = false
-        userRole = UserRoles.ROLE_NO_CERT.role
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "USER_SEQ", nullable = false)

@@ -32,19 +32,17 @@ class ClientJpaConfig {
 
         var showSql:Boolean = false
         var formatSql:Boolean = false
-        var useSqlComment:Boolean = false
         val profiles = System.getProperty("spring.profiles.active")
         if(arrayOf(ProfileFlavor.LOCAL.env, ProfileFlavor.DEV.env).contains(profiles)) {
             showSql = true
             formatSql = true
-            useSqlComment = true
         }
 
         // JPA Hibernate properties
         hibernateProperties[AvailableSettings.HBM2DDL_AUTO] = "none" // ddl-auto: none
         hibernateProperties[AvailableSettings.SHOW_SQL] = showSql // SQL 출력 비활성화
         hibernateProperties[AvailableSettings.FORMAT_SQL] = formatSql // SQL 포맷팅 비활성화
-        hibernateProperties[AvailableSettings.USE_SQL_COMMENTS] = useSqlComment // SQL 주석 비활성화
+        hibernateProperties[AvailableSettings.USE_SQL_COMMENTS] = false // SQL 주석 비활성화
         hibernateProperties[AvailableSettings.PHYSICAL_NAMING_STRATEGY] = UpperCasePhysicalNamingStrategy::class.java.name
         hibernateProperties["hibernate.session.events.log.LOG_QUERIES_SLOWER_THAN_MS"] = 100L // 느린 쿼리 로그
         hibernateProperties[AvailableSettings.DEFAULT_BATCH_FETCH_SIZE] = 1000 // 배치 페치 크기

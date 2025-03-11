@@ -4,9 +4,10 @@
 # 환경
 ```
 - SpringBoot : 3.3.10
+- SpringSecurity: 6.3.8
 - JDK : 17
 - Mysql : 9.0.1
-- Redis : 7.2.6 ( 비밀번호 설정 X )
+- Redis : 7.2.6
 - Kafka : 3.9.0
 ```
 

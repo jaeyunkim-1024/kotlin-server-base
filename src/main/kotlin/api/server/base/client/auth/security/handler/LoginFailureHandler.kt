@@ -5,8 +5,8 @@ import api.server.base.admin.user.repo.LoginHistoryRepository
 import api.server.base.client.auth.user.entity.UserInfo
 import api.server.base.client.auth.user.enums.AccessCode
 import api.server.base.client.auth.user.repo.UserInfoRepository
-import api.server.base.common.model.CustomResponseDto
-import api.server.base.common.model.CustomResultCode
+import api.server.base.common.model.CommonResponseDto
+import api.server.base.common.model.CommonResultCode
 import com.fasterxml.jackson.databind.ObjectMapper
 import jakarta.servlet.ServletException
 import jakarta.servlet.http.HttpServletRequest
@@ -44,9 +44,9 @@ class LoginFailureHandler(
         }
 
         // JSON 응답 출력
-        val result = CustomResponseDto(
-            resultCode = CustomResultCode.AUTH_003.name,
-            message = CustomResultCode.AUTH_003.message,
+        val result = CommonResponseDto(
+            resultCode = CommonResultCode.AUTH_003.name,
+            message = CommonResultCode.AUTH_003.message,
             data = null
         )
 
@@ -55,5 +55,6 @@ class LoginFailureHandler(
         response.status = HttpStatus.OK.value()
         response.writer.write(mapper.writeValueAsString(result))
         response.writer.flush()
+        response.writer.close()
     }
 }

@@ -1,25 +1,25 @@
 package api.server.base.common.model
 
-open class CustomException: Exception {
-    val resultCode: CustomResultCode
+open class CommonException: Exception {
+    val resultCode: CommonResultCode
 
-    constructor(resultCode: CustomResultCode, cause: Throwable? = null)
+    constructor(resultCode: CommonResultCode, cause: Throwable? = null)
             : this(resultCode, resultCode.name, cause, null)
 
     constructor(
-        resultCode: CustomResultCode,
+        resultCode: CommonResultCode,
         message: String,
         additionalInfo: Map<String, Any>? = null,
     ) : this(resultCode, message, null, additionalInfo)
 
     constructor(
-        resultCode: CustomResultCode,
+        resultCode: CommonResultCode,
         cause: Throwable,
         additionalInfo: Map<String, Any>? = null,
     ) : this(resultCode, resultCode.name, cause, additionalInfo)
 
     constructor(
-        resultCode: CustomResultCode,
+        resultCode: CommonResultCode,
         message: String,
         cause: Throwable?,
         additionalInfo: Map<String, Any>? = null,
