@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpServletResponse
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.security.core.Authentication
+import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler
 import java.io.IOException
 
@@ -27,6 +28,8 @@ class LoginSuccessHandler(
         response: HttpServletResponse,
         authentication: Authentication
     ) {
+        SecurityContextHolder.getContext().authentication = authentication
+
         val mapper = ObjectMapper()
         val token: JwtTokenModel = jwtTokenProvider.issuedToken(authentication)
         val result = CommonResponseDto(

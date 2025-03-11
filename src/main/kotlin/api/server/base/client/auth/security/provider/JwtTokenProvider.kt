@@ -3,7 +3,7 @@ package api.server.base.client.auth.security.provider
 import api.server.base.client.auth.security.model.CustomUserDetails
 import api.server.base.client.auth.security.model.JwtTokenModel
 import api.server.base.client.auth.user.enums.UserRoles
-import api.server.base.client.auth.user.service.UserTokenService
+import api.server.base.client.auth.user.service.UserRedisService
 import api.server.base.common.enums.DotEnvScheme
 import api.server.base.common.enums.RedisKeyGen
 import api.server.base.common.model.CommonException
@@ -27,7 +27,7 @@ import javax.crypto.SecretKey
 
 @Component
 class JwtTokenProvider(
-    private val userTokenService: UserTokenService
+    private val userRedisService: UserRedisService
 ) {
     /** 토큰 생성 */
     @Throws(JsonProcessingException::class)
@@ -60,7 +60,7 @@ class JwtTokenProvider(
             .compact()
         val saltingToken = salting(jwt)
 
-        userTokenService.setEnableToken(saltingToken, principal.username)
+        userRedisService.setEnableToken(saltingToken, principal.username)
         return JwtTokenModel(
             token = saltingToken,
             iat = issuedAt.time,
@@ -71,7 +71,7 @@ class JwtTokenProvider(
     /** 토큰 만료 */
     fun tokenExpire(email: String?): Boolean {
         try {
-            userTokenService.setDisableToken(email)
+            userRedisService.setDisableToken(email)
             return true
         } catch (e: Exception) {
             return false
@@ -100,7 +100,7 @@ class JwtTokenProvider(
     /** 토큰 검증 */
     fun validateToken(token: String): Boolean {
         val saltingToken = salting(token)
-        val isExpireInRedis = userTokenService.isEnableToken(saltingToken)
+        val isExpireInRedis = userRedisService.isEnableToken(saltingToken)
         if (!isExpireInRedis) {
             return false
         }

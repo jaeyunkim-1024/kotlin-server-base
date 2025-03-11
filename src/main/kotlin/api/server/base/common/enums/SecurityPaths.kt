@@ -11,7 +11,7 @@ object SecurityPaths {
     val allowPermitAllPaths = listOf(
         "/api/auth/sign-in",
         "/api/auth/sign-up",
-        "/health-check"
+        "/health-check",
     )
     val allowNoCertUserPaths = listOf(
         "api/auth/email/**"

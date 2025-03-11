@@ -3,8 +3,10 @@ package api.server.base.config.security
 import api.server.base.admin.user.repo.LoginHistoryRepository
 import api.server.base.client.auth.security.filter.JwtFilter
 import api.server.base.client.auth.security.filter.LoginFilter
+import api.server.base.client.auth.security.filter.LogoutFilter
 import api.server.base.client.auth.security.handler.LoginFailureHandler
 import api.server.base.client.auth.security.handler.LoginSuccessHandler
+import api.server.base.client.auth.security.handler.LogoutSuccessHandler
 import api.server.base.client.auth.security.provider.JwtTokenProvider
 import api.server.base.client.auth.user.repo.UserInfoRepository
 import api.server.base.common.enums.SecurityPaths.allowOrigin
@@ -42,6 +44,17 @@ class SecurityFilterConfig(
             )
         )
         return loginFilter
+    }
+
+    @Bean
+    fun logoutFilter(): LogoutFilter {
+        val logoutFilter = LogoutFilter(
+            logoutUrl = "/api/auth/sign-out",
+            logoutSuccessHandler = LogoutSuccessHandler(jwtTokenProvider),
+            jwtTokenProvider = jwtTokenProvider
+        )
+        logoutFilter.setFilterProcessesUrl("/api/auth/sign-out")
+        return logoutFilter
     }
 
     @Bean

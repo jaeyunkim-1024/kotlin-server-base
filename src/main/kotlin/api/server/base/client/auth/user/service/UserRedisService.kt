@@ -5,7 +5,7 @@ import api.server.base.common.service.RedisService
 import org.springframework.stereotype.Service
 
 @Service
-class UserTokenService(
+class UserRedisService(
     private val redisService: RedisService
 ) {
     fun setEnableToken(token: String?, email: String?) {
@@ -29,6 +29,7 @@ class UserTokenService(
         val ttl = RedisKeyGen.USER_TOKEN.ttl()
         if (redisService.isExist(token) && redisService.getValue(token) == "Y") {
             redisService.setValue(token, "N", ttl)
+            redisService.deleteKey(emailTokenKey)
         }
     }
 
