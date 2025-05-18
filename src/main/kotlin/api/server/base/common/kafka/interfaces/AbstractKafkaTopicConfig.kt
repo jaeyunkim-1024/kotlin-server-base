@@ -1,4 +1,4 @@
-package api.server.base.common.kafka
+package api.server.base.common.kafka.interfaces
 
 import org.apache.kafka.clients.admin.NewTopic
 import org.springframework.kafka.core.KafkaAdmin

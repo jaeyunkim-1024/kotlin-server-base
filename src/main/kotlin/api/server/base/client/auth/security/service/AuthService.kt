@@ -1,5 +1,6 @@
 package api.server.base.client.auth.security.service
 
+import api.server.base.client.auth.security.kafka.ClientEmailProducer
 import api.server.base.client.auth.security.model.AuthRequestDto
 import api.server.base.client.auth.security.model.CustomUserDetails
 import api.server.base.client.auth.user.entity.UserInfo
@@ -18,6 +19,7 @@ import java.time.LocalDateTime
 class AuthService(
     private val userInfoRepository: UserInfoRepository,
     private val bCryptPasswordEncoder: BCryptPasswordEncoder,
+    private val clientEmailProducer: ClientEmailProducer,
 ) {
 
     fun signUp(dto: AuthRequestDto.SignUpRequestDto) : UsernamePasswordAuthenticationToken{
@@ -41,6 +43,8 @@ class AuthService(
                 userRole = UserRoles.ROLE_NO_CERT.role,
             )
         )
+        clientEmailProducer.sendEmail(email)
+
         return UsernamePasswordAuthenticationToken(CustomUserDetails(user), user.password, arrayListOf(
             SimpleGrantedAuthority(user.userRole)
         ))

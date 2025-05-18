@@ -1,4 +1,4 @@
-package api.server.base.common.kafka
+package api.server.base.common.kafka.interfaces
 
 import org.apache.kafka.common.config.TopicConfig
 

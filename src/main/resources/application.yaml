@@ -13,7 +13,6 @@ spring:
         enabled: false
 
 kafka:
-  topic:
-    sample:
-      name: sample-topic
-      group-id: sample-group
+  client-email:
+    topic: my-client-email-topic
+    group-id: my-client-email-group
