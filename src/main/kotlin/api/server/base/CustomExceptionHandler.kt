@@ -1,4 +1,4 @@
-package api.server.base.common.controller
+package api.server.base
 
 import api.server.base.common.model.CommonException
 import api.server.base.common.model.CommonResponseDto

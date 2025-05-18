@@ -1,4 +1,4 @@
-package api.server.base.common.controller
+package api.server.base
 
 import api.server.base.common.model.CommonResponseDto
 import org.springframework.http.ResponseEntity
