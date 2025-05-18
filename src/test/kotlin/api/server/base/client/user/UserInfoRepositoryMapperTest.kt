@@ -1,4 +1,4 @@
-package api.server.base.client
+package api.server.base.client.user
 
 import api.server.base.BaseApplication
 import api.server.base.client.auth.user.repo.UserInfoRepository
@@ -37,12 +37,12 @@ class UserInfoRepositoryMapperTest(
     @Test
     fun jpaTest(){
         val list = userInfoRepository.findAll()
-        assertEquals(1,list.size)
+        assertEquals(1, list.size)
     }
 
     @Test
     fun mapperTest(){
         val list = userInfoMapper.selectUserInfo()
-        assertEquals(1,list.size)
+        assertEquals(1, list.size)
     }
 }
