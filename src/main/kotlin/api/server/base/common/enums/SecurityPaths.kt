@@ -8,12 +8,13 @@ object SecurityPaths {
 
     val adminPath:String = "/api/admin/**"
 
-    val allowPermitAllPaths = listOf(
+    val filterAllowPaths = listOf(
         "/api/auth/sign-in",
         "/api/auth/sign-up",
-        "/health-check",
+        "/health-check"
     )
     val allowNoCertUserPaths = listOf(
-        "api/auth/email/**"
+        "api/auth/email/**",
+        "/h2-console/*"
     )
 }
