@@ -6,12 +6,14 @@ import api.server.base.client.auth.security.provider.JwtTokenProvider
 import api.server.base.client.auth.security.service.AuthService
 import api.server.base.common.model.CommonResponseDto
 import jakarta.validation.Valid
+import org.springframework.context.annotation.Profile
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
+@Profile("local","dev")
 @RestController
 @RequestMapping("/api/auth")
 class AuthController(

@@ -1,7 +1,7 @@
 package api.server.base.client.auth.security.filter
 
 import api.server.base.client.auth.security.provider.JwtTokenProvider
-import api.server.base.common.enums.SecurityPaths.allowPermitAllPaths
+import api.server.base.common.enums.SecurityPaths
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
@@ -33,6 +33,6 @@ class JwtFilter(
     }
 
     override fun shouldNotFilter(request: HttpServletRequest): Boolean {
-        return allowPermitAllPaths.contains(request.requestURI)
+        return SecurityPaths.filterAllowPaths.contains(request.requestURI)
     }
 }

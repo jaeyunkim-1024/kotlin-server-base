@@ -5,12 +5,12 @@ import api.server.base.client.auth.security.filter.LoginFilter
 import api.server.base.client.auth.security.filter.LogoutFilter
 import api.server.base.client.auth.security.service.CustomUserDetailService
 import api.server.base.client.auth.user.enums.UserRoles
-import api.server.base.common.enums.SecurityPaths.adminPath
-import api.server.base.common.enums.SecurityPaths.allowNoCertUserPaths
+import api.server.base.common.enums.SecurityPaths
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.context.annotation.Profile
 import org.springframework.http.HttpMethod
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.ProviderManager
@@ -23,6 +23,7 @@ import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 import org.springframework.web.filter.CorsFilter
 
+@Profile("local","dev")
 @Configuration
 class SecurityConfig(
     private val customUserDetailService: CustomUserDetailService,
@@ -43,21 +44,21 @@ class SecurityConfig(
             formLogin { disable() }
             sessionManagement { sessionCreationPolicy = SessionCreationPolicy.STATELESS }
 
-            allowNoCertUserPaths.forEach{
+            SecurityPaths.allowNoCertUserPaths.forEach{
                 securityMatcher(it)
             }
-            securityMatcher(adminPath)
+            securityMatcher(SecurityPaths.adminPath)
 
             authorizeHttpRequests {
                 authorize(HttpMethod.OPTIONS, "/**", permitAll)
-//                allowPermitAllPaths.forEach {
-//                    authorize(it, permitAll)
-//                }
-                allowNoCertUserPaths.forEach {
+                SecurityPaths.filterAllowPaths.forEach {
+                    authorize(it, permitAll)
+                }
+                SecurityPaths.allowNoCertUserPaths.forEach {
                     authorize(it, hasAnyRole(UserRoles.ROLE_ADMIN.role, UserRoles.ROLE_USER.role, UserRoles.ROLE_NO_CERT.role))
                 }
 
-                authorize(adminPath, hasRole(UserRoles.ROLE_ADMIN.role))
+                authorize(SecurityPaths.adminPath, hasRole(UserRoles.ROLE_ADMIN.role))
                 authorize(anyRequest, denyAll)
             }
 

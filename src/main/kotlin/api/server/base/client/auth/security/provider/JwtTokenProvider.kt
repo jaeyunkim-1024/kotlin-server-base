@@ -14,6 +14,7 @@ import io.jsonwebtoken.*
 import io.jsonwebtoken.io.Decoders
 import io.jsonwebtoken.security.Keys
 import jakarta.servlet.http.HttpServletRequest
+import org.springframework.context.annotation.Profile
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.GrantedAuthority
@@ -25,6 +26,7 @@ import java.sql.Timestamp
 import java.util.stream.Collectors
 import javax.crypto.SecretKey
 
+@Profile("local","dev")
 @Component
 class JwtTokenProvider(
     private val userRedisService: UserRedisService

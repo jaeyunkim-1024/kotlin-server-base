@@ -3,12 +3,14 @@ package api.server.base.client.auth.security.service
 import api.server.base.client.auth.security.model.CustomUserDetails
 import api.server.base.client.auth.user.repo.UserInfoRepository
 import api.server.base.client.auth.user.service.UserRedisService
+import org.springframework.context.annotation.Profile
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Service
 import java.util.*
 
+@Profile("local","dev")
 @Service
 class CustomUserDetailService(
     private val userInfoRepository: UserInfoRepository,

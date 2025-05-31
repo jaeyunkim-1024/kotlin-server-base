@@ -8,6 +8,7 @@ import api.server.base.client.auth.user.enums.UserRoles
 import api.server.base.client.auth.user.repo.UserInfoRepository
 import api.server.base.common.model.CommonException
 import api.server.base.common.model.CommonResultCode
+import org.springframework.context.annotation.Profile
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service
 import org.springframework.util.StringUtils
 import java.time.LocalDateTime
 
+@Profile("local","dev")
 @Service
 class AuthService(
     private val userInfoRepository: UserInfoRepository,
