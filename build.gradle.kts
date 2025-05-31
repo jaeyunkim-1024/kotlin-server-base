@@ -64,6 +64,9 @@ dependencies {
 	implementation("io.jsonwebtoken:jjwt-api:${JJWT_VERSION}")
 	implementation("io.jsonwebtoken:jjwt-jackson:${JJWT_VERSION}")
 	implementation("io.jsonwebtoken:jjwt-impl:${JJWT_VERSION}")
+
+	/// h2
+	implementation("com.h2database:h2")
 }
 
 kotlin {
