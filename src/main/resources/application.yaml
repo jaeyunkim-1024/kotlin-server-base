@@ -1,18 +1,3 @@
-logging:
-  config: "classpath:logback/logback-local.xml"
-
 spring:
-  application:
-    name: kotlin-server-base
-  jpa:
-    open-in-view: false
-    generate-ddl: false
-  data:
-    redis:
-      repositories:
-        enabled: false
-
-kafka:
-  client-email:
-    topic: my-client-email-topic
-    group-id: my-client-email-group
+  profiles:
+    active: test

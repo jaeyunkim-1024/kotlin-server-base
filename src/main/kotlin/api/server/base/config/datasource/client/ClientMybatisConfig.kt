@@ -8,13 +8,11 @@ import org.mybatis.spring.SqlSessionTemplate
 import org.mybatis.spring.annotation.MapperScan
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.context.ApplicationContext
-import org.springframework.context.annotation.Bean
-import org.springframework.context.annotation.ComponentScan
-import org.springframework.context.annotation.Configuration
-import org.springframework.context.annotation.Primary
+import org.springframework.context.annotation.*
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver
 import javax.sql.DataSource
 
+@Profile("local","dev")
 @ComponentScan(basePackages = ["api.server.base.client"])
 @MapperScan(
     basePackages = ["api.server.base.client.mappers"],

@@ -1,0 +1,19 @@
+logging:
+  config: "classpath:logback/logback-local.xml"
+
+spring:
+  application:
+    name: kotlin-server-base
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+kafka:
+  client-email:
+    topic: my-client-email-topic
+    group-id: my-client-email-group
